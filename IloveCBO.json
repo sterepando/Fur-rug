@@ -1,0 +1,105 @@
+{
+  "story_title": "Выживание в бункере",
+  "start_card": "start",
+  "characters": {
+    "advisor": {
+      "name": "Советник",
+      "image_url": "https://i.imgur.com/abcdef.png" 
+    },
+    "general": {
+      "name": "Генерал",
+      "image_url": "https://i.imgur.com/ghijkl.png"
+    },
+    "scientist": {
+      "name": "Ученый",
+      "image_url": "https://i.imgur.com/mnopqr.png" 
+    }
+  },
+  "cards": {
+    "start": {
+      "character": "advisor",
+      "text": "Господин Президент, мы пережили катастрофу в этом бункере. Воздух на исходе. Что предпримем?",
+      "choices": [
+        {
+          "text": "Начать раскопки.",
+          "effects": {"environment": -10, "population": -5, "military": 5, "economy": 0},
+          "next_card": "dig_success"
+        },
+        {
+          "text": "Ждать спасения.",
+          "effects": {"environment": -20, "population": -10, "military": -5, "economy": -5},
+          "next_card": "wait_fail"
+        }
+      ]
+    },
+    "dig_success": {
+      "character": "general",
+      "text": "Мы пробились на поверхность! Воздух пригоден для дыхания, но повсюду руины. Наши люди истощены.",
+      "choices": [
+        {
+          "text": "Обыскать руины.",
+          "effects": {"environment": -5, "population": -5, "military": 5, "economy": 10},
+          "next_card": "ruins_search"
+        },
+        {
+          "text": "Разбить лагерь.",
+          "effects": {"environment": 0, "population": 10, "military": -5, "economy": 0},
+          "next_card": "camp_setup"
+        }
+      ]
+    },
+    "wait_fail": {
+      "character": "scientist",
+      "text": "Системы жизнеобеспечения отказывают. Мы не можем больше ждать. Попытка выбраться силой - наш единственный шанс.",
+      "choices": [
+        {
+          "text": "Взорвать выход.",
+          "effects": {"environment": -15, "population": -15, "military": 0, "economy": 0},
+          "next_card": "dig_success"
+        },
+        {
+          "text": "Принять судьбу.",
+          "effects": {"environment": 0, "population": -100, "military": 0, "economy": 0},
+          "next_card": "game_over"
+        }
+      ]
+    },
+    "ruins_search": {
+        "character": "advisor",
+        "text": "Наши разведчики нашли консервный завод. Запасов еды хватит надолго, но некоторые банки выглядят подозрительно.",
+        "choices": [
+            {
+                "text": "Рискнуть и съесть.",
+                "effects": {"environment": 0, "population": 20, "military": 0, "economy": 5},
+                "next_card": "food_poison"
+            },
+            {
+                "text": "Проверить сначала.",
+                "effects": {"environment": 0, "population": 5, "military": 0, "economy": -5},
+                "next_card": "food_ok"
+            }
+        ]
+    },
+    "camp_setup": {
+        "character": "general",
+        "text": "Лагерь разбит, моральный дух высок. Но мы уязвимы для мародеров, которые уже замечены неподалеку.",
+        "choices": [
+            {
+                "text": "Усилить патрули.",
+                "effects": {"environment": 0, "population": -5, "military": 15, "economy": -5},
+                "next_card": "marauder_attack"
+            },
+            {
+                "text": "Надеяться на лучшее.",
+                "effects": {"environment": 0, "population": 5, "military": -15, "economy": 0},
+                "next_card": "marauder_attack"
+            }
+        ]
+    },
+    "game_over": {
+        "character": "advisor",
+        "text": "Это конец. Мы не смогли выжить в этом новом мире.",
+        "is_final": true
+    }
+  }
+}
